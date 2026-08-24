@@ -84,6 +84,47 @@
         </div>
       </section>
 
+      <!-- MODULO DE VENTAS (POS) -->
+      <section id="salesPage" class="page">
+        <div class="pos-layout">
+          <!-- Columna Izquierda: Productos o Selección dinámicos -->
+          <div class="pos-left">
+            <div id="posDynamicSelector" class="pos-special-bar hidden"></div>
+            <div class="toolbar">
+              <div class="search-box">🔎 <input id="posProductSearch" placeholder="Buscar por nombre o código de barras..."></div>
+            </div>
+            <div id="posProductsGrid" class="pos-products-grid"></div>
+          </div>
+
+          <!-- Columna Derecha: Carrito y Cobro -->
+          <div class="pos-right panel">
+            <div class="cart-header">
+              <h3>🛒 Carrito <span id="selectedTableBadge" class="table-badge hidden">Mesa 1</span></h3>
+              <button id="clearCartBtn" class="secondary-button compact">Limpiar</button>
+            </div>
+
+            <div id="cartItemsList" class="cart-items-list"></div>
+
+            <div class="cart-summary">
+              <div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">$0</strong></div>
+              <div class="summary-row"><span>Impuesto (19%)</span><strong id="cartTax">$0</strong></div>
+              <div class="summary-row total"><span>Total</span><strong id="cartTotal">$0</strong></div>
+
+              <div class="payment-methods">
+                <label>Método de Pago</label>
+                <div class="pay-buttons">
+                  <button type="button" class="pay-btn active" data-method="cash">💵 Efectivo</button>
+                  <button type="button" class="pay-btn" data-method="card">💳 Tarjeta</button>
+                  <button type="button" class="pay-btn" data-method="transfer">📱 Transferencia</button>
+                </div>
+              </div>
+
+              <button id="completeSaleBtn" class="primary-button">Completar Venta <span>✓</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="productsPage" class="page">
         <div class="section-head"><div><h2>📦 Productos</h2><p>Administra productos, precios y existencias.</p></div><button id="newProductButton" class="primary-button compact">＋ Nuevo producto</button></div>
         <div class="toolbar"><div class="search-box">🔎 <input id="productSearch" placeholder="Buscar producto o SKU..."></div><select id="categoryFilter"><option value="">Todas las categorías</option></select></div>
@@ -130,6 +171,7 @@
 <script src="config.js"></script>
 <script src="modules.js"></script>
 <script src="products.js"></script>
+<script src="sales.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
