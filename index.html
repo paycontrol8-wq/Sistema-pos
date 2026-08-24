@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6366f1">
+<title>POS Universal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app">
+
+<section id="setupScreen" class="screen setup-screen">
+  <div class="setup-card">
+    <div class="brand-large">
+      <div class="brand-icon">🏪</div>
+      <div><h1>POS Universal</h1><p>Tu negocio, tu sistema.</p></div>
+    </div>
+    <div class="setup-progress"><span class="progress-active"></span><span></span><span></span></div>
+
+    <div id="setupStep1" class="setup-step active">
+      <div class="setup-heading"><span class="eyebrow">PASO 1</span><h2>¿Qué tipo de negocio tienes?</h2><p>Selecciona el tipo que más se parezca a tu negocio.</p></div>
+      <div id="businessTypes" class="business-grid"></div>
+      <button id="continueBusiness" class="primary-button" disabled>Continuar <span>→</span></button>
+    </div>
+
+    <div id="setupStep2" class="setup-step">
+      <div class="setup-heading"><span class="eyebrow">PASO 2</span><h2>Cuéntanos sobre tu negocio</h2><p>Esta información se guardará en este dispositivo.</p></div>
+      <div class="form-grid">
+        <div class="form-group full"><label>Nombre del negocio</label><input id="businessName" type="text" placeholder="Ej: Mi Tienda"></div>
+        <div class="form-group"><label>Teléfono</label><input id="businessPhone" type="tel" placeholder="300 123 4567"></div>
+        <div class="form-group"><label>Moneda</label><select id="businessCurrency"><option value="COP">🇨🇴 Peso colombiano (COP)</option><option value="USD">🇺🇸 Dólar estadounidense (USD)</option><option value="EUR">🇪🇺 Euro (EUR)</option><option value="MXN">🇲🇽 Peso mexicano (MXN)</option></select></div>
+        <div class="form-group full"><label>Dirección</label><input id="businessAddress" type="text" placeholder="Dirección del negocio"></div>
+      </div>
+      <div class="setup-actions"><button id="backBusiness" class="secondary-button">← Atrás</button><button id="saveBusiness" class="primary-button">Crear mi POS <span>✓</span></button></div>
+    </div>
+  </div>
+</section>
+
+<section id="mainApp" class="main-app hidden">
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-brand">
+      <div id="sidebarLogo" class="brand-icon small">🏪</div>
+      <div><strong id="sidebarBusinessName">POS Universal</strong><span>Panel de control</span></div>
+    </div>
+    <nav id="mainNavigation" class="navigation"></nav>
+    <div class="sidebar-bottom">
+      <button id="themeButton" class="sidebar-action">🌙 <span>Modo oscuro</span></button>
+      <button id="settingsButton" class="sidebar-action">⚙️ <span>Configuración</span></button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <button id="menuButton" class="icon-button mobile-only">☰</button>
+      <div class="topbar-title"><span id="pageIcon">🏠</span><div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Resumen de tu negocio</p></div></div>
+      <div class="topbar-actions"><button id="notificationButton" class="icon-button">🔔</button><div class="user-avatar">👤</div></div>
+    </header>
+
+    <div id="pageContent" class="page-content">
+
+      <section id="dashboardPage" class="page active">
+        <div class="welcome-card"><div><span class="eyebrow">BIENVENIDO</span><h2>Hola 👋 <span id="welcomeBusinessName">Negocio</span></h2><p>Aquí tienes un resumen de tu negocio.</p></div><div class="welcome-icon">🚀</div></div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">💰</div><div><span>Ventas</span><strong id="statSales">$0</strong><small>Hoy</small></div></article>
+          <article class="stat-card"><div class="stat-icon green">📦</div><div><span>Productos</span><strong id="statProducts">0</strong><small>Registrados</small></div></article>
+          <article class="stat-card"><div class="stat-icon purple">👥</div><div><span>Clientes</span><strong id="statCustomers">0</strong><small>Registrados</small></div></article>
+          <article class="stat-card"><div class="stat-icon orange">💵</div><div><span>Stock bajo</span><strong id="statLowStock">0</strong><small>Productos</small></div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel"><div class="panel-header"><div><h3>Acciones rápidas</h3><p>Accede rápidamente a las funciones principales.</p></div></div><div id="quickActions" class="quick-actions"></div></article>
+          <article class="panel"><div class="panel-header"><div><h3>Estado del sistema</h3><p>Información de tu POS.</p></div></div>
+            <div class="system-status">
+              <div class="status-row"><span>💾 Base de datos</span><strong class="status-online">● Funcionando</strong></div>
+              <div class="status-row"><span>📡 Modo</span><strong>Offline</strong></div>
+              <div class="status-row"><span>🏪 Tipo</span><strong id="systemBusinessType">-</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="productsPage" class="page">
+        <div class="section-head"><div><h2>📦 Productos</h2><p>Administra productos, precios y existencias.</p></div><button id="newProductButton" class="primary-button compact">＋ Nuevo producto</button></div>
+        <div class="toolbar"><div class="search-box">🔎 <input id="productSearch" placeholder="Buscar producto o SKU..."></div><select id="categoryFilter"><option value="">Todas las categorías</option></select></div>
+        <div id="productsList" class="products-list"></div>
+      </section>
+
+      <section id="productFormPage" class="page">
+        <div class="section-head"><div><h2 id="productFormTitle">➕ Nuevo producto</h2><p>Los campos especiales dependen del tipo de negocio.</p></div></div>
+        <form id="productForm" class="panel product-form">
+          <input type="hidden" id="productId">
+          <div class="form-grid">
+            <div class="form-group"><label>Nombre *</label><input id="productName" required></div>
+            <div class="form-group"><label>SKU / Código</label><input id="productSku" placeholder="Ej: PROD-001"></div>
+            <div class="form-group"><label>Categoría</label><input id="productCategory" placeholder="Ej: Bebidas"></div>
+            <div class="form-group"><label>Precio de compra</label><input id="productCost" type="number" min="0" step="0.01" value="0"></div>
+            <div class="form-group"><label>Precio de venta *</label><input id="productPrice" type="number" min="0" step="0.01" required></div>
+            <div class="form-group"><label>Stock inicial</label><input id="productStock" type="number" min="0" step="1" value="0"></div>
+            <div class="form-group"><label>Stock mínimo</label><input id="productMinStock" type="number" min="0" step="1" value="0"></div>
+            <div id="specialFields" class="special-fields full"></div>
+            <div class="form-group full"><label>Descripción</label><textarea id="productDescription" rows="4" placeholder="Descripción del producto"></textarea></div>
+          </div>
+          <div class="setup-actions"><button type="button" id="cancelProduct" class="secondary-button">Cancelar</button><button type="submit" class="primary-button">Guardar producto <span>✓</span></button></div>
+        </form>
+      </section>
+
+      <section id="inventoryPage" class="page">
+        <div class="section-head"><div><h2>📊 Inventario</h2><p>Control de existencias y productos con stock bajo.</p></div></div>
+        <div id="inventorySummary" class="inventory-summary"></div>
+        <div id="inventoryList" class="products-list"></div>
+      </section>
+
+      <section id="dynamicPage" class="page">
+        <div class="empty-page"><div class="empty-icon">🚧</div><h2 id="dynamicTitle">Módulo</h2><p id="dynamicDescription">Este módulo estará disponible próximamente.</p><button id="backDashboard" class="primary-button">← Volver al dashboard</button></div>
+      </section>
+
+    </div>
+  </main>
+</section>
+
+<div id="toastContainer" class="toast-container"></div>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<script src="js/database.js"></script>
+<script src="js/config.js"></script>
+<script src="js/modules.js"></script>
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
