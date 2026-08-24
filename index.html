@@ -62,6 +62,7 @@
 
     <div id="pageContent" class="page-content">
 
+      <!-- DASHBOARD -->
       <section id="dashboardPage" class="page active">
         <div class="welcome-card"><div><span class="eyebrow">BIENVENIDO</span><h2>Hola 👋 <span id="welcomeBusinessName">Negocio</span></h2><p>Aquí tienes un resumen de tu negocio.</p></div><div class="welcome-icon">🚀</div></div>
 
@@ -84,10 +85,9 @@
         </div>
       </section>
 
-      <!-- MODULO DE VENTAS (POS) -->
+      <!-- VENTAS (POS) -->
       <section id="salesPage" class="page">
         <div class="pos-layout">
-          <!-- Columna Izquierda: Productos o Selección dinámicos -->
           <div class="pos-left">
             <div id="posDynamicSelector" class="pos-special-bar hidden"></div>
             <div class="toolbar">
@@ -96,7 +96,6 @@
             <div id="posProductsGrid" class="pos-products-grid"></div>
           </div>
 
-          <!-- Columna Derecha: Carrito y Cobro -->
           <div class="pos-right panel">
             <div class="cart-header">
               <h3>🛒 Carrito <span id="selectedTableBadge" class="table-badge hidden">Mesa 1</span></h3>
@@ -125,12 +124,14 @@
         </div>
       </section>
 
+      <!-- PRODUCTOS -->
       <section id="productsPage" class="page">
         <div class="section-head"><div><h2>📦 Productos</h2><p>Administra productos, precios y existencias.</p></div><button id="newProductButton" class="primary-button compact">＋ Nuevo producto</button></div>
         <div class="toolbar"><div class="search-box">🔎 <input id="productSearch" placeholder="Buscar producto o SKU..."></div><select id="categoryFilter"><option value="">Todas las categorías</option></select></div>
         <div id="productsList" class="products-list"></div>
       </section>
 
+      <!-- FORMULARIO PRODUCTO -->
       <section id="productFormPage" class="page">
         <div class="section-head"><div><h2 id="productFormTitle">➕ Nuevo producto</h2><p>Los campos especiales dependen del tipo de negocio.</p></div></div>
         <form id="productForm" class="panel product-form">
@@ -150,12 +151,76 @@
         </form>
       </section>
 
+      <!-- INVENTARIO -->
       <section id="inventoryPage" class="page">
         <div class="section-head"><div><h2>📊 Inventario</h2><p>Control de existencias y productos con stock bajo.</p></div></div>
         <div id="inventorySummary" class="inventory-summary"></div>
         <div id="inventoryList" class="products-list"></div>
       </section>
 
+      <!-- CAJA -->
+      <section id="cashPage" class="page">
+        <div class="section-head">
+          <div><h2>💰 Control de Caja</h2><p>Gestión de turno, aperturas, cierres y movimientos.</p></div>
+          <div id="cashStatusBadge" class="cash-badge">Estado: Cerrada</div>
+        </div>
+        <div class="dashboard-grid">
+          <article class="panel">
+            <h3>Acciones de Caja</h3>
+            <div class="cash-actions-grid">
+              <button id="btnOpenCash" class="primary-button">🔓 Abrir Caja / Turno</button>
+              <button id="btnAddMovement" class="secondary-button" disabled>💵 Entrada / Salida</button>
+              <button id="btnCloseCash" class="secondary-button danger" disabled>🔒 Arqueo y Cierre</button>
+            </div>
+            <div id="cashMovementForm" class="cash-form hidden">
+              <h4 id="cashFormTitle">Nuevo Movimiento</h4>
+              <div class="form-group"><label>Tipo</label><select id="cashMovType"><option value="in">Ingreso (+)</option><option value="out">Egreso (-)</option></select></div>
+              <div class="form-group"><label>Monto</label><input id="cashMovAmount" type="number" min="0" step="0.01"></div>
+              <div class="form-group"><label>Concepto</label><input id="cashMovReason" placeholder="Ej: Pago de flete, base de cambio..."></div>
+              <button id="btnSaveCashMov" class="primary-button compact">Guardar Movimiento</button>
+            </div>
+          </article>
+          <article class="panel">
+            <h3>Resumen del Turno Actual</h3>
+            <div class="system-status">
+              <div class="status-row"><span>Monto Inicial:</span><strong id="cashInitAmount">$0</strong></div>
+              <div class="status-row"><span>Ventas Efectivo:</span><strong id="cashSalesCash">$0</strong></div>
+              <div class="status-row"><span>Ventas Tarjeta:</span><strong id="cashSalesCard">$0</strong></div>
+              <div class="status-row"><span>Ventas Transferencia:</span><strong id="cashSalesTransfer">$0</strong></div>
+              <div class="status-row"><span>Ingresos Manuales:</span><strong id="cashInManual">$0</strong></div>
+              <div class="status-row"><span>Egresos Manuales:</span><strong id="cashOutManual">$0</strong></div>
+              <hr>
+              <div class="status-row"><span>Efectivo Esperado en Caja:</span><strong id="cashExpectedTotal" style="font-size:16px;">$0</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CLIENTES -->
+      <section id="customersPage" class="page">
+        <div class="section-head">
+          <div><h2>👥 Clientes</h2><p>Administra la información y crédito de tus clientes.</p></div>
+          <button id="btnNewCustomer" class="primary-button compact">＋ Nuevo Cliente</button>
+        </div>
+        <div class="toolbar">
+          <div class="search-box">🔎 <input id="customerSearch" placeholder="Buscar cliente por nombre o teléfono..."></div>
+        </div>
+        <div id="customersList" class="products-list"></div>
+      </section>
+
+      <!-- PROVEEDORES Y COMPRAS -->
+      <section id="suppliersPage" class="page">
+        <div class="section-head">
+          <div><h2>🚚 Proveedores y Reabastecimiento</h2><p>Gestiona proveedores e ingresos de mercancía.</p></div>
+          <div class="setup-actions" style="grid-template-columns: 1fr 1fr;">
+            <button id="btnNewSupplier" class="secondary-button">＋ Proveedor</button>
+            <button id="btnNewPurchase" class="primary-button">📦 Registrar Compra</button>
+          </div>
+        </div>
+        <div id="suppliersList" class="products-list"></div>
+      </section>
+
+      <!-- PÁGINA DINÁMICA -->
       <section id="dynamicPage" class="page">
         <div class="empty-page"><div class="empty-icon">🚧</div><h2 id="dynamicTitle">Módulo</h2><p id="dynamicDescription">Este módulo estará disponible próximamente.</p><button id="backDashboard" class="primary-button">← Volver al dashboard</button></div>
       </section>
@@ -172,6 +237,11 @@
 <script src="modules.js"></script>
 <script src="products.js"></script>
 <script src="sales.js"></script>
+<script src="operations.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
+
+
+
+
