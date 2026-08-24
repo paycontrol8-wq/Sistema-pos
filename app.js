@@ -2,7 +2,7 @@ let selectedBusinessType=null;
 document.addEventListener("DOMContentLoaded",async()=>{try{await openDatabase();const b=await dbGet("business","main");if(b){window.currentBusiness=b;showMainApp()}else showSetup()}catch(e){console.error(e);showToast("❌ No se pudo iniciar la base de datos")}});
 
 function showSetup(){document.getElementById("setupScreen").classList.remove("hidden");document.getElementById("mainApp").classList.add("hidden");renderBusinessTypes()}
-function renderBusinessTypes(){const c=document.getElementById("businessTypes");c.innerHTML="";BUSINESS_TYPES.forEach(b=>{const o=document.createElement("button");o.type="button";o.className="business-option";o.innerHTML=`<div class="business-icon">${b.icon}</div><div class="business-name">${b.name}</div>`;o.onclick=()=>{document.querySelectorAll(".business-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");selectedBusinessType=b.id;document.getElementById("continueBusiness").disabled=false};c.appendChild(o)})}
+function renderBusinessTypes(){const c=document.getElementById("businessTypes");c.innerHTML="";BUSINESS_TYPES.forEach(b=>{const o=document.createElement("button");o.type="button";o.className="business-option";o.innerHTML=`<div class="business-icon">${b.icon}</div><div class="business-name">${b.name}</div>`;o.onclick=()=>{document.querySelectorAll(".business-option").forEach(x=>x.classList.remove("selected"));o.classList.add("selected");selectedBusinessType=b.id;document.getElementById("continueBusiness").disabled=false};c.appendChild(o)})};
 document.getElementById("continueBusiness").onclick=()=>{if(!selectedBusinessType)return;document.getElementById("setupStep1").classList.remove("active");document.getElementById("setupStep2").classList.add("active");document.querySelector(".progress-active").style.flex="2"};
 document.getElementById("backBusiness").onclick=()=>{document.getElementById("setupStep2").classList.remove("active");document.getElementById("setupStep1").classList.add("active")};
 document.getElementById("saveBusiness").onclick=createBusiness;
@@ -22,4 +22,33 @@ document.getElementById("backDashboard").onclick=showDashboard;
 document.getElementById("menuButton").onclick=()=>{document.getElementById("sidebar").classList.add("open");document.getElementById("sidebarOverlay").classList.add("active")};
 document.getElementById("sidebarOverlay").onclick=closeSidebar;
 function closeSidebar(){document.getElementById("sidebar").classList.remove("open");document.getElementById("sidebarOverlay").classList.remove("active")}
+
+// Lógica del menú desplegable del perfil (Avatar)
+const userAvatar = document.querySelector(".user-avatar");
+const profileDropdown = document.getElementById("profileDropdown");
+
+userAvatar?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const b = window.currentBusiness;
+  if (b) {
+    document.getElementById("profileMenuName").textContent = b.name;
+    document.getElementById("profileMenuType").textContent = b.businessTypeName || "POS Universal";
+  }
+  profileDropdown.classList.toggle("hidden");
+});
+
+document.addEventListener("click", () => {
+  if (profileDropdown && !profileDropdown.classList.contains("hidden")) {
+    profileDropdown.classList.add("hidden");
+  }
+});
+
+document.getElementById("btnResetData")?.addEventListener("click", async () => {
+  if (confirm("¿Estás seguro de reiniciar sesión? Se borrarán los datos de este dispositivo y podrás configurar un nuevo negocio.")) {
+    indexedDB.deleteDatabase("POSUniversalDB");
+    localStorage.clear();
+    location.reload();
+  }
+});
+
 loadTheme();
