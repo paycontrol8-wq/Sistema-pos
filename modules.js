@@ -32,6 +32,9 @@ function openModule(id){
   if(id==="sales"){showSales();return}
   if(id==="products"){showProducts();return}
   if(id==="inventory"){showInventory();return}
+  if(id==="cash"){showCash();return}
+  if(id==="customers"){showCustomers();return}
+  if(id==="suppliers"){showSuppliers();return}
   
   const b=window.currentBusiness,all={...BASE_MODULES,...(SPECIAL_MODULES[b.businessType]||{})},m=all[id];
   if(!m)return;
