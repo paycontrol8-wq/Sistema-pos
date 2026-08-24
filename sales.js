@@ -14,7 +14,6 @@ function showSales() {
   closeSidebar();
 }
 
-// Renderiza elementos dinámicos según el tipo de negocio (Ej: Mesas en Restaurante)
 function renderDynamicSelector() {
   const container = document.getElementById("posDynamicSelector");
   const type = window.currentBusiness?.businessType;
@@ -134,7 +133,7 @@ function updateItemQuantity(index, change) {
 }
 
 function updateTotals(subtotal) {
-  const tax = subtotal * 0.19; // IVA 19% opcional
+  const tax = subtotal * 0.19;
   const total = subtotal + tax;
   
   document.getElementById("cartSubtotal").textContent = formatMoney(subtotal);
@@ -163,7 +162,6 @@ async function processSale() {
     businessType: window.currentBusiness.businessType
   };
   
-  // Registrar venta y descontar inventario en IndexedDB
   await dbPut("sales", sale);
   
   for (const item of currentCart) {
@@ -191,7 +189,6 @@ async function processSale() {
   await updateDashboard();
 }
 
-// Event Listeners POS
 document.getElementById("posProductSearch")?.addEventListener("input", loadPosProducts);
 document.getElementById("clearCartBtn")?.addEventListener("click", () => {
   currentCart = [];
