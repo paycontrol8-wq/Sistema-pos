@@ -16,7 +16,7 @@ const BUSINESS_TYPES = [
   { id: "liquor", name: "Licorería", icon: "🍷", description: "Venta por botella o copa" },
   { id: "petshop", name: "Pet Shop", icon: "🐕", description: "Mascotas y alimento a granel" },
   { id: "bookstore", name: "Librería / Papelería", icon: "📚", description: "ISBN y combos escolares" },
-  { id: "spa", name: "Spa / Estética", icon: "💆‍♀️", description: "Citas y control de cabinas" },
+  { id: "spa", name: "Spa / Estética", icon: "💆‍♀️", description: "Gestión de espacios" },
   { id: "pizzeria", name: "Pizzería", icon: "🍕", description: "Productos armables y toppings" },
   { id: "custom", name: "Personalizado", icon: "⚙️", description: "Configura tu sistema" }
 ];
