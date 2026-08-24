@@ -53,3 +53,48 @@ body.dark{--bg:#090d18;--surface:#111827;--surface-2:#182233;--text:#f8fafc;--te
 @media (max-width: 900px) {
   .pos-layout { grid-template-columns: 1fr; }
 }
+/* --- ESTILOS COMPLEMENTARIOS POS & OPERACIONES --- */
+.pos-layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; align-items: start; }
+.pos-special-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; margin-bottom: 15px; }
+.tables-selector { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; }
+.chip-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-weight: 600; cursor: pointer; }
+.chip-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.pos-products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 15px; }
+.pos-product-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 15px 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+.pos-product-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+.pos-product-icon { font-size: 28px; margin-bottom: 6px; }
+.pos-product-name { display: block; font-size: 12px; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pos-product-price { display: block; color: var(--primary); font-weight: 700; font-size: 13px; }
+.pos-product-stock { color: var(--text-secondary); font-size: 10px; }
+
+.cart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+.table-badge { background: rgba(99,102,241,0.1); color: var(--primary); font-size: 11px; padding: 4px 8px; border-radius: 8px; margin-left: 5px; }
+.cart-items-list { min-height: 220px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 15px; }
+.empty-cart { text-align: center; color: var(--text-secondary); padding: 40px 0; font-size: 13px; }
+.cart-item { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+.cart-item-info strong { display: block; font-size: 13px; }
+.cart-item-info span { color: var(--text-secondary); font-size: 10px; }
+.cart-item-controls { display: flex; align-items: center; gap: 8px; background: var(--surface-2); border-radius: 8px; padding: 2px 6px; }
+.cart-item-controls button { width: 22px; height: 22px; border-radius: 6px; background: var(--surface); color: var(--text); font-weight: bold; }
+.cart-item-total { font-size: 13px; }
+
+.cart-summary { display: flex; flex-direction: column; gap: 10px; }
+.summary-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); }
+.summary-row.total { font-size: 18px; color: var(--text); font-weight: 800; border-top: 1px dashed var(--border); padding-top: 10px; }
+.payment-methods { margin: 10px 0; }
+.payment-methods label { display: block; font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+.pay-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pay-btn { padding: 8px 4px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 10px; font-weight: 600; cursor: pointer; }
+.pay-btn.active { background: rgba(99,102,241,0.15); border-color: var(--primary); color: var(--primary); }
+
+.cash-badge { padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border); }
+.cash-badge.open { background: rgba(16,185,129,0.15); color: var(--success); border-color: var(--success); }
+.cash-badge.closed { background: rgba(239,68,68,0.15); color: var(--danger); border-color: var(--danger); }
+.cash-actions-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; margin-bottom: 20px; }
+.secondary-button.danger { color: var(--danger); border-color: var(--danger); }
+.cash-form { background: var(--surface-2); border: 1px dashed var(--border); border-radius: 14px; padding: 15px; margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 900px) {
+  .pos-layout { grid-template-columns: 1fr; }
+}
