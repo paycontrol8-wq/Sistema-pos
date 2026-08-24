@@ -57,7 +57,20 @@
     <header class="topbar">
       <button id="menuButton" class="icon-button mobile-only">☰</button>
       <div class="topbar-title"><span id="pageIcon">🏠</span><div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Resumen de tu negocio</p></div></div>
-      <div class="topbar-actions"><button id="notificationButton" class="icon-button">🔔</button><div class="user-avatar">👤</div></div>
+      <div class="topbar-actions">
+        <button id="notificationButton" class="icon-button">🔔</button>
+        <div class="user-avatar" title="Perfil y Sesión">👤
+          <!-- Menú desplegable de perfil -->
+          <div id="profileDropdown" class="profile-dropdown hidden">
+            <div class="profile-header-info">
+              <strong id="profileMenuName">Negocio</strong>
+              <span id="profileMenuType">Tipo de negocio</span>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border); margin:8px 0;">
+            <button id="btnResetData" class="dropdown-item danger-text">🗑️ Cambiar / Reiniciar Negocio</button>
+          </div>
+        </div>
+      </div>
     </header>
 
     <div id="pageContent" class="page-content">
@@ -241,7 +254,3 @@
 <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
